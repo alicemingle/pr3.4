@@ -43,18 +43,15 @@ int AutoTest() {
 	if ((a * b).re != 3 || (a * b).im != 0) {
 		return 0;
 	}
-	for (int i = 0; i < 100; i++) {
-		CComplexVector0 vect1(1000000);
-		CComplexVector0 vect2(1000000);
+	for (int i = 0; i < 1; i++) {
+		CComplexVector0 vect1(100000000);
+		CComplexVector0 vect2(100000000);
 		std::cout << "Started" << std::endl;
 		std::chrono::time_point<std::chrono::system_clock> start = std::chrono::system_clock::now();
-		CComplexNumber res = vect1 * vect2;
+		vect1 += vect2;
 		std::chrono::time_point<std::chrono::system_clock> end = std::chrono::system_clock::now();
 		int elapsed_ms = static_cast<int>(std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count());
 		std::cout << "Addition operator runtime is " << elapsed_ms << " ms\n";
-		if (res.re != 0 || res.im != 0) {
-			return 0;
-		}
 	}
 	return 1;
 }
