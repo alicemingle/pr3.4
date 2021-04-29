@@ -118,16 +118,18 @@ const CComplexNumber &CComplexVector::operator[](int i) const {
 }
 
 CComplexVector &CComplexVector::operator+=(const CComplexVector &right) {
+	int n = std::min(this->vecsize, right.vecsize);
 #pragma omp parallel for
-	for (int i = 0; i < std::min(this->vecsize, right.vecsize); i++) {
+	for (int i = 0; i < n; i++) {
 		this->data[i] += right[i];
 	}
 	return *this;
 }
 
 CComplexVector &CComplexVector::operator-=(const CComplexVector &right) {
+	int n = std::min(this->vecsize, right.vecsize);
 #pragma omp parallel for
-	for (int i = 0; i < std::min(this->vecsize, right.vecsize); i++) {
+	for (int i = 0; i < n; i++) {
 		this->data[i] -= right[i];
 	}
 	return *this;
